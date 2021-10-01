@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.4</version>
+    <date>2021-10-01T14:02:57Z</date>
+    <groups>
+        <group>
+            <uuid>36bff6c29af64692839d077febfc7079</uuid>
+            <name>Templates/Network devices</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>cfeab3385423456ab9ff956804e22dcb</uuid>
+            <template>Aruba-CX-VSFv2</template>
+            <name>Aruba-CX-VSFv2</name>
+            <description>ArubaOS-CX VSF Stacking Status
+(generated with help from mib2zabbix)</description>
+            <groups>
+                <group>
+                    <name>Templates/Network devices</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>77226bf5cc9e49ab868b0ed8437fd96a</uuid>
+                    <name>arubaWiredVsfv2DomainId</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.1.4.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2DomainId</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <description>This object uniquely identifies the VSF stack. All members of the stack have the same domain ID. It is valid only when we have more than a member in a stack.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Status</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6bef67a8a03b4db6a5820ef01e7a50ef</uuid>
+                    <name>arubaWiredVsfv2OperStatus</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.1.1.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2OperStatus</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Describes current split state of VSF stack. Split state can be one of the following: noSplit: Both primary and secondary members are physically present and operational. fragmemtActive: A stack split has been detected and all network interfaces in this fragment are active. fragmentInactive: A stack split has been detected and all network interfaces in this fragment are inactive.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Status</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>223cdb9ad7bd4bc6a19ff187174288cd</uuid>
+                            <expression>last(/Aruba-CX-VSFv2/ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2OperStatus)&lt;&gt;&quot;no_split&quot;</expression>
+                            <name>VSF Split Detected</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>b5c4361dc65541c69b95618cddb8d5ff</uuid>
+                    <name>arubaWiredVsfv2Secondary</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.1.5.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2Secondary</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <description>This object uniquely identifies the designated secondary switch for the stack. This switch would normally become the standby member of the stack.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Status</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>816b1006dc9346199da5ca8fd7a555ec</uuid>
+                    <name>arubaWiredVsfv2SplitDetectConfigured</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.0.2.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2SplitDetectConfigured</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <status>DISABLED</status>
+                    <value_type>FLOAT</value_type>
+                    <description>Split detection scheme configured on the VSF stack. Supported schemes: 'none`: No split detection. In the event of a stack split, multiple fragments can be active. `mgmt`: The management network interface will be used to detect a stack split. If multiple fragments are detected, only the stack fragment containing the 'primary' member will keep its network interfaces active.</description>
+                    <valuemap>
+                        <name>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2SplitDetectConfigured</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Config</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>23eb1818bd584aa99640e7cf07ae1bdc</uuid>
+                    <name>arubaWiredVsfv2StackMacAddr</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.1.3.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2StackMacAddr</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <description>This object describes MAC address of a VSF stack.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Status</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>ec8af6f30dac476793505f0749a84663</uuid>
+                    <name>arubaWiredVsfv2Topology</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.1.2.0</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2Topology</key>
+                    <delay>60</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>This object describes the physical topology of the VSF stack. Supported technologies include: standalone: The VSF stack comprises a single member only. chain: The VSF stack members are connected in a daisy chain. ring: The VSF stack members are connected in a ring.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Status</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>2b9b406f8bb54e36a9480776c54dea3f</uuid>
+                            <expression>change(/Aruba-CX-VSFv2/ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2Topology)=1</expression>
+                            <name>VSF Topology Change</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>173455e6a0fb4932b3985bcf9cdae59b</uuid>
+                    <name>arubaWiredVsfv2LinkEntry Discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ARUBAWIREDVSFV2LINKPORTLIST},.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.6,{#ARUBAWIREDVSFV2LINKPEERLINKID},.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.5,{#ARUBAWIREDVSFV2LINKPEERMEMBERID},.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.4]</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2LinkEntry</key>
+                    <delay>3600</delay>
+                    <status>DISABLED</status>
+                    <description>A row in the Virtual Switching Framework Link table.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>80572dc659454bd3b558ae7a5f5c182a</uuid>
+                            <name>arubaWiredVsfv2LinkOperStatus for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2LinkOperStatus[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>The state of the VSF link.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>8173f42092e54a8f99c7d2cbdaeea403</uuid>
+                            <name>arubaWiredVsfv2LinkPeerLinkId for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2LinkPeerLinkId[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <description>The link id of the peer member on the link.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>2b5a78f3ae384e00a983e525f5c2f702</uuid>
+                            <name>arubaWiredVsfv2LinkPeerMemberId for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2LinkPeerMemberId[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <description>The member ID of the peer switch on the link.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>84972107271143fe80fed32c4cf5b12d</uuid>
+                            <name>arubaWiredVsfv2LinkPortList for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.3.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2LinkPortList[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>Interface(s) associated to the link.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>2c585166a21a44308bc6834d02082ca7</uuid>
+                    <name>arubaWiredVsfv2MemberEntry Discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ARUBAWIREDVSFV2MEMBERCURRENTUSAGE},.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.14,{#ARUBAWIREDVSFV2MEMBERTOTALMEMORY},.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.13,{#ARUBAWIREDVSFV2MEMBERBOOTROMVERSION},.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.12]</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2MemberEntry</key>
+                    <delay>3600</delay>
+                    <description>A row in the Virtual Switching Framework member table.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>b8198aebe55a4c6aa093d33a2c40ab8a</uuid>
+                            <name>arubaWiredVsfv2MemberBootTime for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberBootTime[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>0</history>
+                            <trends>0</trends>
+                            <units>uptime</units>
+                            <description>The boot up time, in seconds, of this VSF stack member.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>.01</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>663a001004ae41d39c676e97c95bc379</uuid>
+                            <name>arubaWiredVsfv2MemberCpuUtil for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberCpuUtil[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>percent</units>
+                            <description>The CPU utilization, in percentage, of this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>e50d8174194c4a7fa6dd94ff7658ce5b</uuid>
+                            <name>arubaWiredVsfv2MemberCurrentUsage for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberCurrentUsage[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <description>Specifies the current memory (RAM) usage on this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>add07a64eeb34d4aa8520c74bedca469</uuid>
+                            <name>arubaWiredVsfv2MemberIndex for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberIndex[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <description>Virtual Switching Framework Member ID.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9bedb1080fa04d728840a741a1a7a37d</uuid>
+                            <name>arubaWiredVsfv2MemberMacAddr for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberMacAddr[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>The switch base MAC address of this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>76dc7165bae0460e8388303c8b9df9f0</uuid>
+                            <name>arubaWiredVsfv2MemberMemoryUtil for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberMemoryUtil[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>percent</units>
+                            <description>The memory utilization, in percentage, of this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>4651091d3645400aac9336e520d8d914</uuid>
+                            <name>arubaWiredVsfv2MemberRole for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberRole[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Role of VSF member in stack.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>af921cfbb95a4efea13fb6c8c789cf15</uuid>
+                                    <expression>change(/Aruba-CX-VSFv2/arubaWiredVsfv2MemberRole[{#SNMPINDEX}])=1</expression>
+                                    <name>VSF Member Role Change</name>
+                                    <priority>INFO</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6d7fb776212e4aebaa0fb0a20faaa241</uuid>
+                            <name>arubaWiredVsfv2MemberSerialNum for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberSerialNum[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>The serial number identifier of this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>cc812134b2d745e7ae88aa792198ad0b</uuid>
+                            <name>arubaWiredVsfv2MemberStatus for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberStatus[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Specifies the status of the member-switch in the VSF stack. The switch status can be one of: `notPresent`: Member is not physically part of the stack. `booting`: Member is booting up. `ready`: Member has finished booting, and its interfaces can forward traffic. `versionMismatch`: Member is not running the same operating system version as the master switch. `communicationFailure`: The master switch is unable to communicate with the member. `inOtherFragment`: Member is part of another fragment as discovered through split detection.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>e3f586d84d71439d828170a7535adca3</uuid>
+                                    <expression>last(/Aruba-CX-VSFv2/arubaWiredVsfv2MemberStatus[{#SNMPINDEX}])&lt;&gt;&quot;ready&quot;</expression>
+                                    <name>VSF Member Not Ready</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>af1eeff1f1e640ca83abafbc1f18af4b</uuid>
+                            <name>arubaWiredVsfv2MemberTotalMemory for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.2.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2MemberTotalMemory[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <description>Specifies the total memory (RAM) available on this VSF stack member.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>7a0b7d0402474977a1883f696fa84f4b</uuid>
+                    <name>arubaWiredVsfv2PortEntry Discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ARUBAWIREDVSFV2PORTPEERPRODUCTTYPE},.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.6,{#ARUBAWIREDVSFV2PORTPEERSYSMAC},.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.5,{#ARUBAWIREDVSFV2PORTPEERINTERFACE},.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.4]</snmp_oid>
+                    <key>ARUBAWIRED-VSFv2-MIB.arubaWiredVsfv2PortEntry</key>
+                    <delay>3600</delay>
+                    <description>A row in the VSF port table.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>3ae0e5be37604507a43194f59ff4aeb4</uuid>
+                            <name>arubaWiredVsfv2PortIfIndex for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortIfIndex[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <description>A unique value, greater than zero, for each interface.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9443c0ab214747368025de172033f4d9</uuid>
+                            <name>arubaWiredVsfv2PortOperStatus for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortOperStatus[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>The state of the VSF interface. The interface state can be one of: `up` : Interface is brought up. `down` : Interface is brought down. `error` : Interface is in error state. `autojoin in progress` : Interface is in autojoin progress.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>3b7ea48ce0d443298984dbf202656264</uuid>
+                                    <expression>last(/Aruba-CX-VSFv2/arubaWiredVsfv2PortOperStatus[{#SNMPINDEX}])&lt;&gt;&quot;up&quot;</expression>
+                                    <name>VSF Port Down</name>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>5fb892f0dd514e7aa89169f6ae61d105</uuid>
+                            <name>arubaWiredVsfv2PortPeerInterface for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortPeerInterface[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>Interface name of the peer VSF switch connected to this interface.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ebd78719059c4d11a3f58019529bec5b</uuid>
+                            <name>arubaWiredVsfv2PortPeerProductType for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortPeerProductType[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>Product type of the peer VSF switch connected to this interface.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>22b3311233aa4f08aa66fb5851da1f53</uuid>
+                            <name>arubaWiredVsfv2PortPeerSysMac for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortPeerSysMac[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>MAC address of the peer VSF switch connected to this interface.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ad4118c4ca28469f8102da5a169378ef</uuid>
+                            <name>arubaWiredVsfv2PortStatusStr for {#SNMPINDEX}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.47196.4.1.1.3.15.1.4.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>arubaWiredVsfv2PortStatusStr[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <description>The status string for the VSF interface. The interface state can be one of : 'Successfully connected to &lt;ifname&gt;' : Interface is connected and brought up. 'Interface physically down' : Interface is down. 'Peer with inconsistent system MAC address' : Peer MAC address inconsistent across other interfaces belonging to this link. 'Peer with incompatible product type' : Peer switch with incompatible product type. 'Loop detected on the interface' : Loop detected on this interface. 'Peer timed out' : No response from the peer switch. 'Peer autojoin in progress' : Peer switch is autojoin in progress. 'Peer is not autojoin eligible' : Peer switch not autojoin eligible. 'Peer with incompatible software version' : Peer switch running incompatible software version. 'Peer autojoin validations failed' : Attempt to autojoin by the peer failed. 'Peer with multiple VSF interfaces attempting to autojoin' : Attempt to autojoin via multiple VSF interfaces. 'Peer attempting to autojoin on non-provisioned interface' : Peer switch VSF interface configuration mismatch. 'Peer with non-default VSF interface attempting to autojoin' : Attempt to autojoin on non default VSF interface. 'Peer autojoin failed as there is no free member number available': Attempt to autojoin by the peer failed as there is no free member number available. 'Peer autojoin failed as it is connected in incorrect direction' : Attempt to autojoin by the peer failed as it is not connected in right direction. 'Peer with inconsistent VSF link configuration' : Peer switch with VSF link configuration mismatch.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2Objects</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_AUTHPASS}</macro>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_CONTEXT}</macro>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PORT}</macro>
+                    <value>161</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PRIVPASS}</macro>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_USER}</macro>
+                </macro>
+            </macros>
+            <valuemaps>
+                <valuemap>
+                    <uuid>9547a8723a1a46d59d1fce9a3d1c65d6</uuid>
+                    <name>ARUBAWIRED-VSFv2-MIB::arubaWiredVsfv2SplitDetectConfigured</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>none</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>mgmt</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+</zabbix_export>
